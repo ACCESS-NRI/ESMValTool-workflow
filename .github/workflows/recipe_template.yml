@@ -1,4 +1,4 @@
-name: Run all recipes
+name: Run recipe_validation_CMIP6
  
 on: workflow_dispatch
 
