@@ -275,6 +275,28 @@ def generate_actions():
             file.write(content)
 
 
+def generate_readme():
+    """Generate Readme for GitHub."""
+    home = os.path.expanduser('~')
+    dir_recipes = Path('/g/data/kj13/admin/ESMValTool/recipes')
+
+    environment = Environment(loader=FileSystemLoader("templates/"))
+    template = environment.get_template("readme_template.txt")
+
+    recipes = []
+    for recipe in Path(dir_recipes).rglob('*.yml'):
+        if recipe.stem in exclude:
+            continue
+        recipes.append(recipe.stem)
+        
+    content = template.render(
+            recipes=recipes,
+    )
+    with open('Readme.md', 'w', encoding='utf-8') as file:
+        file.write(content)
+
+
 if __name__ == '__main__':
     generate_submit()
     generate_actions()
+    generate_readme()
