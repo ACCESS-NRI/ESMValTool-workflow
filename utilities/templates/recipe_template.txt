@@ -1,0 +1,25 @@
+{# templates/recipe_template.txt #}
+
+name: Run {{ recipe }} 
+ 
+on:
+  workflow_run:
+    workflows: [ "Run all recipes" ]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  run_recipe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run {{ recipe }}
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: gadi.nci.org.au
+          username: ${% raw %}{{secrets.GADI_USER}}{% endraw %}
+          key: ${% raw %}{{secrets.DEPLOY_KEY}}{% endraw %}
+          command_timeout: 2400m
+          script: |
+            cd ${% raw %}{{secrets.GADI_SCRIPTS_DIR}}{% endraw %}/../ESMValTool/jobs
+            qsub launch_{{ recipe }}.pbs

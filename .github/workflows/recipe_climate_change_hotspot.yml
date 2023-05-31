@@ -1,0 +1,25 @@
+
+
+name: Run recipe_climate_change_hotspot 
+ 
+on:
+  workflow_run:
+    workflows: [ "Run all recipes" ]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  run_recipe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run recipe_climate_change_hotspot
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          key: ${{secrets.DEPLOY_KEY}}
+          command_timeout: 2400m
+          script: |
+            cd ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/jobs
+            qsub launch_recipe_climate_change_hotspot.pbs
