@@ -1,6 +1,11 @@
 name: Run recipe_validation_CMIP6
  
-on: workflow_dispatch
+on:
+  workflow_run:
+    workflows: [ "Run all recipes" ]
+    types:
+      - completed
+  workflow_dispatch:
 
 jobs:
   run_recipe:
