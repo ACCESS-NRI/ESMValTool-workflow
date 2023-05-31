@@ -1,16 +1,18 @@
-name: Recipe Name
+name: Run all recipes
  
-on:
-  workflow_run:
-    workflows: [ "Workflow Main" ]
-    types:
-      - completed
-  workflow_dispatch:
- 
+on: workflow_dispatch
+
 jobs:
-  work:
-    name: Running Recipe
+  run_recipe:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Some work"
-
+      - name: Run recipe_validation_CMIP6
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          key: ${{secrets.DEPLOY_KEY}}
+          command_timeout: 2400m
+          script: |
+            cd ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/jobs
+            qsub launch_recipe_validation_CMIP6.pbs

@@ -1,7 +1,6 @@
 name: Run all recipes
  
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   work:
