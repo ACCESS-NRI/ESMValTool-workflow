@@ -8,7 +8,7 @@ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 
 
 | Name     |      status   |
-|----------|:-------------:| 
+|----------|:-------------| 
 | recipe_miles_regimes | ![recipe_miles_regimes](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_miles_regimes.yml/badge.svg) |  
 | recipe_extreme_index | ![recipe_extreme_index](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_extreme_index.yml/badge.svg) |  
 | recipe_perfmetrics_CMIP5_simple | ![recipe_perfmetrics_CMIP5_simple](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_perfmetrics_CMIP5_simple.yml/badge.svg) |  
