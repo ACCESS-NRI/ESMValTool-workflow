@@ -15,7 +15,7 @@ account = 'iq82'  # Select a compute project to be billed
 # The outputs will be saved in /home/user/<outputs>
 outputs = '/g/data/kj13/admin/ESMValTool/logs'
 # Default Levante computing partition used
-nci_queue = 'copyq'
+nci_queue = 'normal'
 # Default amount of memory used
 memory = '64GB'
 # Default walltime
@@ -198,10 +198,10 @@ def generate_submit():
             file.write('#PBS -W umask=037\n')
             file.write('#PBS -l wd\n')
             file.write(
-                f'#PBS -o {outputs}\n'
+                f'#PBS -o {outputs}/{recipe.stem}.out\n'
             )
             file.write(
-                f'#PBS -e {outputs}\n'
+                f'#PBS -e {outputs}/{recipe.stem}.err\n'
             )
             if not SPECIAL_RECIPES.get(recipe.stem, None):
                 # continue
