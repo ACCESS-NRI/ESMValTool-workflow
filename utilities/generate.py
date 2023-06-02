@@ -42,15 +42,12 @@ SPECIAL_RECIPES = {
     },
     'recipe_check_obs': {
         'nci_queue': '#PBS -q megamem\n',
-        'memory': '#PBS -l mem=512GB \n',
-    },
-    'recipe_climate_change_hotspot': {
-        'nci_queue': '#PBS -q normal\n',
+        'memory': '#PBS -l mem=1000GB \n',
     },
     'recipe_collins13ipcc': {
-        'nci_queue': '#PBS -q megamem\n',
+    y   'nci_queue': '#PBS -q megamem\n',
         'walltime': '#PBS -l walltime=8:00:00\n',
-        'memory': '#PBS -l mem=512GB \n',
+        'memory': '#PBS -l mem=1000GB \n',
     },
     'recipe_extreme_index': {
         'nci_queue': '#PBS -q normal\n',
@@ -75,7 +72,7 @@ SPECIAL_RECIPES = {
     'recipe_ipccwg1ar6ch3_fig_3_42_a': {
         'nci_queue': '#PBS -q megamem\n',
         'walltime': '#PBS -l walltime=08:00:00\n',
-        'memory': '#PBS -l mem=512GB \n',
+        'memory': '#PBS -l mem=1000GB \n',
     },
     'recipe_ipccwg1ar6ch3_fig_3_42_b': {
         'nci_queue': '#PBS -q normal\n',
@@ -86,7 +83,7 @@ SPECIAL_RECIPES = {
     'recipe_schlund20esd': {
         'nci_queue': '#PBS -q megamem\n',
         'walltime': '#PBS -l walltime=08:00:00\n',
-        'memory': '#PBS -l mem=512GB \n',
+        'memory': '#PBS -l mem=1000GB \n',
     },
     'recipe_schlund20jgr_gpp_abs_rcp85': {
         'nci_queue': '#PBS -q normal\n',
