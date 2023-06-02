@@ -1,4 +1,4 @@
-name: Update Obsdata
+name: Update Auxiliary data
 on: workflow_dispatch
 jobs:
   build:
