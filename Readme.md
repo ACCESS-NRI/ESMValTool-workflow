@@ -8,6 +8,10 @@ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 ![example workflow](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/sync_auxdata.yml/badge.svg)
 
 
+Recipes can be triggered using the GitHub actions `workflow_run`
+The output logs are located in `/g/data/kj13/admin/ESMValTool/logs`. You need to be a member of `kj13_w` to access them.
+
+
 | Name     |      status   |
 |----------|:-------------| 
 | recipe_miles_regimes | ![recipe_miles_regimes](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_miles_regimes.yml/badge.svg) |  
