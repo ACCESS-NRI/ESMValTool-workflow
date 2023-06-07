@@ -4,7 +4,7 @@ name: Run recipe_climwip_brunner20esd
  
 on:
   workflow_run:
-    workflows: [ "Run all recipes" ]
+    workflows: [ "Run all recipes", "Run all failed" ]
     types:
       - completed
   workflow_dispatch:
@@ -13,7 +13,21 @@ jobs:
   run_recipe:
     runs-on: ubuntu-latest
     steps:
+      - name: Get latest workflow run status
+        uses: actions/github-script@v3
+        id: latest-workflow-status
+        with:
+          script: |
+            const runs = await github.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'recipe_climwip_brunner20esd.yml',
+              per_page: 2
+            })
+            return runs.data.workflow_runs[1].conclusion
+          result-encoding: string
       - name: Run recipe_climwip_brunner20esd
+        if: ${{ github.event.workflow_run.name == 'Run all recipes' || steps.latest-workflow-status.outputs.result == 'failure' }}
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: gadi.nci.org.au
