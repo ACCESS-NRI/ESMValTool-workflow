@@ -8,7 +8,7 @@ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 
 
 | Name     |      status   |
-|----------|:-------------:| 
+|----------|:-------------| 
 | recipe_albedolandcover | ![recipe_albedolandcover](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_albedolandcover.yml/badge.svg) |  
 | recipe_anav13jclim | ![recipe_anav13jclim](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_anav13jclim.yml/badge.svg) |  
 | recipe_arctic_ocean | ![recipe_arctic_ocean](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_arctic_ocean.yml/badge.svg) |  
