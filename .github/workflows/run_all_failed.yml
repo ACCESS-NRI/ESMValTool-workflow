@@ -1,0 +1,10 @@
+name: Run all failed
+ 
+on: workflow_dispatch
+
+jobs:
+  work:
+    name: Some Workflow Main Work
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Run All Failes"
