@@ -1,6 +1,6 @@
 
 
-name: Run recipe_flato13ipcc 
+name: Run recipe_flato13ipcc_figure_942 
  
 on:
   workflow_run:
@@ -21,12 +21,12 @@ jobs:
             const runs = await github.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'recipe_flato13ipcc.yml',
+              workflow_id: 'runtests.yml',
               per_page: 2
             })
             return runs.data.workflow_runs[1].conclusion
           result-encoding: string
-      - name: Run recipe_flato13ipcc
+      - name: Run recipe_flato13ipcc_figure_942
         if: ${{ github.event.workflow_run.name == 'Run all recipes' || steps.latest-workflow-status.outputs.result == 'failure' }}
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -36,4 +36,4 @@ jobs:
           command_timeout: 2400m
           script: |
             cd ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/jobs
-            qsub launch_recipe_flato13ipcc.pbs
+            qsub launch_recipe_flato13ipcc_figure_942.pbs

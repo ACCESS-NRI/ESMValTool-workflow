@@ -4,6 +4,10 @@ import subprocess
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
+
+
+dir_recipes = Path('./ESMValTool/esmvaltool/recipes')
+
 # Name of the conda enviro-l walltime={walltime}\nnment in which esmvaltool is installed
 env = 'conda/access-med-0.1'
 # Mail notifications when a submitted job fails or finishes
@@ -45,7 +49,7 @@ SPECIAL_RECIPES = {
         'memory': '#PBS -l mem=1000GB \n',
     },
     'recipe_collins13ipcc': {
-    y   'nci_queue': '#PBS -q megamem\n',
+        'nci_queue': '#PBS -q megamem\n',
         'walltime': '#PBS -l walltime=8:00:00\n',
         'memory': '#PBS -l mem=1000GB \n',
     },
@@ -141,14 +145,13 @@ exclude = ['recipe_schlund20jgr_gpp_abs_rcp85',
 
 def generate_submit():
     """Generate and submit scripts."""
-    home = os.path.expanduser('~')
-    dir_recipes = Path('/g/data/kj13/admin/ESMValTool/recipes')
 
+    Path("./jobs").mkdir(parents=True, exist_ok=True)
     for recipe in Path(dir_recipes).rglob('*.yml'):
         filename = f'launch_{recipe.stem}.pbs'
         if recipe.stem in exclude:
             continue
-        with open(f'{filename}', 'w', encoding='utf-8') as file:
+        with open(f'jobs/{filename}', 'w', encoding='utf-8') as file:
             file.write('#!/bin/bash -l \n')
             file.write('#PBS -S /bin/bash\n')
             file.write(f'#PBS -P {account}\n')
@@ -212,9 +215,6 @@ def generate_submit():
 
 def generate_actions():
     """Generate GitHub action scripts."""
-    home = os.path.expanduser('~')
-    dir_recipes = Path('/g/data/kj13/admin/ESMValTool/recipes')
-
     environment = Environment(loader=FileSystemLoader("templates/"))
     template = environment.get_template("recipe_template.txt")
 
@@ -225,15 +225,12 @@ def generate_actions():
         content = template.render(
             recipe=recipe.stem,
         )
-        with open(f'./actions/{filename}', 'w', encoding='utf-8') as file:
+        with open(f'../.github/workflows/{filename}', 'w', encoding='utf-8') as file:
             file.write(content)
 
 
 def generate_readme():
     """Generate Readme for GitHub."""
-    home = os.path.expanduser('~')
-    dir_recipes = Path('/g/data/kj13/admin/ESMValTool/recipes')
-
     environment = Environment(loader=FileSystemLoader("templates/"))
     template = environment.get_template("readme_template.txt")
 
@@ -243,10 +240,11 @@ def generate_readme():
             continue
         recipes.append(recipe.stem)
         
+    recipes.sort()    
     content = template.render(
             recipes=recipes,
     )
-    with open('Readme.md', 'w', encoding='utf-8') as file:
+    with open('../Readme.md', 'w', encoding='utf-8') as file:
         file.write(content)
 
 

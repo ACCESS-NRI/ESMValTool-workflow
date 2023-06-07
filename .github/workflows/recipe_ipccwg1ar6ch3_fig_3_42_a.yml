@@ -21,7 +21,7 @@ jobs:
             const runs = await github.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'recipe_ipccwg1ar6ch3_fig_3_42_a.yml',
+              workflow_id: 'runtests.yml',
               per_page: 2
             })
             return runs.data.workflow_runs[1].conclusion
