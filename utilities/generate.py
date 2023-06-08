@@ -202,10 +202,10 @@ def generate_submit():
             file.write(f'module load {env}\n')
             file.write('\n')
             if not config_file:
-                file.write(f'esmvaltool run {str(recipe)}')
+                file.write(f'esmvaltool run ../{str(recipe)}')
             else:
                 file.write(f'esmvaltool run --config_file '
-                           f'{str(config_file)} {str(recipe)}')
+                           f'{str(config_file)} ../{str(recipe)}')
             if recipe.stem in ONE_TASK_RECIPES:
                 file.write(' --max_parallel_tasks=1')
 
