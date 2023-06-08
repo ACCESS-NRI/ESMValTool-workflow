@@ -18,7 +18,7 @@ jobs:
         id: latest-workflow-status
         with:
           script: |
-            const runs = await github.actions.listWorkflowRuns({
+            const runs = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'recipe_autoassess_landsurface_permafrost.yml',
@@ -27,7 +27,7 @@ jobs:
             return runs.data.workflow_runs[1].conclusion
           result-encoding: string
       - name: Run recipe_autoassess_landsurface_permafrost
-        if: ${{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result == 'failure' ) }}
+        if: ${{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result == 'failure' ) || github.event.workflow_dispatch }}
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: gadi.nci.org.au
