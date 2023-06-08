@@ -27,7 +27,9 @@ jobs:
             return runs.data.workflow_runs[1].conclusion
           result-encoding: string
       - name: Run recipe_albedolandcover
-        if: ${{ github.event.workflow_run.name == 'Run all recipes' || steps.latest-workflow-status.outputs.result == 'failure' }}
+        if: |
+	    ${{ github.event.workflow_run.name == 'Run all recipes' || 
+	    ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result == 'failure')}}
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: gadi.nci.org.au
