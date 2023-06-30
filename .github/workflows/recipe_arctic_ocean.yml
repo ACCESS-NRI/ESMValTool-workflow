@@ -53,6 +53,7 @@ jobs:
         with:
           name: output_log
           path: log.txt
+      - uses: actions/checkout@v3
       - name: Step To run on failure
         if: ${{ failure() }}
         uses: JasonEtco/create-an-issue@v2
