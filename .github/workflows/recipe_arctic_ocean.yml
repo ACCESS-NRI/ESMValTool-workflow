@@ -28,15 +28,16 @@ jobs:
           result-encoding: string
       - name: Run recipe_arctic_ocean
         if: ${{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: gadi.nci.org.au
-          username: ${{secrets.GADI_USER}}
-          key: ${{secrets.DEPLOY_KEY}}
-          command_timeout: 2400m
-          script: |
-            cd ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/jobs
-            qsub launch_recipe_arctic_ocean.pbs
+        #uses: appleboy/ssh-action@v0.1.7
+        #with:
+        #  host: gadi.nci.org.au
+        #  username: ${{secrets.GADI_USER}}
+        #  key: ${{secrets.DEPLOY_KEY}}
+        #  command_timeout: 2400m
+        #  script: |
+        #    cd ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/jobs
+        #    qsub launch_recipe_arctic_ocean.pbs
+        run: exit 1
       - name: copy file via ssh password
         if: ${{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
         uses: appleboy/scp-action@v0.1.4
@@ -55,11 +56,10 @@ jobs:
       - name: Step To run on failure
         if: ${{ failure() }}
         run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/issues \
-          --header 'authorization: Bearer ${{ secrets.GH_TOKEN }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "title": "Issue created due to workflow fialure: ${{ github.run_id }}",
-            "body": "$(cat log.txt)"
-            }'
+          curl _L \
+          -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H 'Authorization: Bearer ${{ secrets.GH_TOKEN }}' \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          https://api.github.com/repos/${{ github.repository }}/issues \
+          -d '{"title":"Found a bug","body":"I'\''m having a problem with this.","assignees":["octocat"],"milestone":1,"labels":["bug"]}'
