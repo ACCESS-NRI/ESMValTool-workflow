@@ -37,6 +37,21 @@ jobs:
           script: |
             cd ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/jobs
             qsub launch_recipe_arctic_ocean.pbs
+      - name: copy file via ssh password
+        if: ${{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          key: ${{secrets.DEPLOY_KEY}}
+          source: ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/logs/recipe_arctic_ocean.out
+          target: log.txt
+      - name: Upload log as artifact
+        if: ${{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: output_log
+          path: log.txt
       - name: Step To run on failure
         if: ${{ failure() }}
         run: |
@@ -46,5 +61,5 @@ jobs:
           --header 'content-type: application/json' \
           --data '{
             "title": "Issue created due to workflow fialure: ${{ github.run_id }}",
-            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n due to failure in run: _${{ github.run_id }}_."
+            "body": "$(cat log.txt)"
             }'
