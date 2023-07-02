@@ -43,10 +43,10 @@ jobs:
         with:
           direction: download
           host: gadi.nci.org.au
-          username: ${% raw %}${{secrets.GADI_USER}}{% endraw %}
+          username: ${% raw %}{{secrets.GADI_USER}}{% endraw %}
           insecure_ignore_fingerprint: true
-          key: ${% raw %}${{secrets.DEPLOY_KEY}}{% endraw %}
-          source: ${% raw %}${{secrets.GADI_SCRIPTS_DIR}}{% endraw %}/../ESMValTool/logs/{{ recipe }}.out
+          key: ${% raw %}{{secrets.DEPLOY_KEY}}{% endraw %}
+          source: ${% raw %}{{secrets.GADI_SCRIPTS_DIR}}{% endraw %}/../ESMValTool/logs/{{ recipe }}.out
           target: log.txt
       - name: Upload log as artifact
         if: ${% raw %}{{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}{% endraw %}

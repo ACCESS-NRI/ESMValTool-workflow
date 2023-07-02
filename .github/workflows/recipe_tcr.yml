@@ -43,10 +43,10 @@ jobs:
         with:
           direction: download
           host: gadi.nci.org.au
-          username: $${{secrets.GADI_USER}}
+          username: ${{secrets.GADI_USER}}
           insecure_ignore_fingerprint: true
-          key: $${{secrets.DEPLOY_KEY}}
-          source: $${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/logs/recipe_tcr.out
+          key: ${{secrets.DEPLOY_KEY}}
+          source: ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/logs/recipe_tcr.out
           target: log.txt
       - name: Upload log as artifact
         if: ${{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
