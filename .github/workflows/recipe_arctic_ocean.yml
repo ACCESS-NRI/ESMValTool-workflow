@@ -66,5 +66,5 @@ jobs:
           then
             gh api --header "Accept: application/vnd.github+json" --header 'X-GitHub-Api-Version:2022-11-28' --method POST /repos/ACCESS-NRI/ESMValTool-workflow/issues -f title="Created with the REST API" -f body="This is a test issue created by the REST API"
           else
-            gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/ACCESS-NRI/ESMValTool-workflow/issues/$github_id/comments -f body="$(cat log.txt)"
+            gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/ACCESS-NRI/ESMValTool-workflow/issues/$github_id/comments -f data=log.txt
           fi
