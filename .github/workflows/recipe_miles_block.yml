@@ -38,6 +38,7 @@ jobs:
             cd ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/jobs
             qsub launch_recipe_miles_block.pbs
       - name: Get output log
+        if: ${{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
         uses: nicklasfrahm/scp-action@main
         with:
           direction: download
@@ -48,7 +49,7 @@ jobs:
           source: $${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/logs/recipe_miles_block.out
           target: log.txt
       - name: Upload log as artifact
-        if: ${{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
+        if: ${{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v3
         with:
           name: output_log

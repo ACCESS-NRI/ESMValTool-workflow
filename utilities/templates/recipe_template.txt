@@ -38,6 +38,7 @@ jobs:
             cd ${% raw %}{{secrets.GADI_SCRIPTS_DIR}}{% endraw %}/../ESMValTool/jobs
             qsub launch_{{ recipe }}.pbs
       - name: Get output log
+        if: ${% raw %}{{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}{% endraw %}
         uses: nicklasfrahm/scp-action@main
         with:
           direction: download
@@ -48,7 +49,7 @@ jobs:
           source: ${% raw %}${{secrets.GADI_SCRIPTS_DIR}}{% endraw %}/../ESMValTool/logs/{{ recipe }}.out
           target: log.txt
       - name: Upload log as artifact
-        if: ${% raw %}{{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}{% endraw %}
+        if: ${% raw %}{{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}{% endraw %}
         uses: actions/upload-artifact@v3
         with:
           name: output_log
