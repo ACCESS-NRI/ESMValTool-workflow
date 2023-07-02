@@ -7,7 +7,6 @@ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 ![example workflow](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/sync_jasmin.yml/badge.svg)
 ![example workflow](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/sync_auxdata.yml/badge.svg)
 
-
 | Name     |      status   |
 |----------|:-------------| 
 | recipe_albedolandcover | ![recipe_albedolandcover](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_albedolandcover.yml/badge.svg) |  

@@ -37,3 +37,32 @@ jobs:
           script: |
             cd ${% raw %}{{secrets.GADI_SCRIPTS_DIR}}{% endraw %}/../ESMValTool/jobs
             qsub launch_{{ recipe }}.pbs
+      - name: Get output log
+        uses: nicklasfrahm/scp-action@main
+        with:
+          direction: download
+          host: gadi.nci.org.au
+          username: ${% raw %}${{secrets.GADI_USER}}{% endraw %}
+          insecure_ignore_fingerprint: true
+          key: ${% raw %}${{secrets.DEPLOY_KEY}}{% endraw %}
+          source: ${% raw %}${{secrets.GADI_SCRIPTS_DIR}}{% endraw %}/../ESMValTool/logs/{{ recipe }}.out
+          target: log.txt
+      - name: Upload log as artifact
+        if: ${% raw %}{{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}{% endraw %}
+        uses: actions/upload-artifact@v3
+        with:
+          name: output_log
+          path: log.txt
+      - name: Create Issue if fails
+        if: ${% raw %}{{ failure() }}{% endraw %}
+        env:
+          GH_TOKEN: ${% raw %}{{ secrets.GH_TOKEN }}{% endraw %}
+        run: |
+          github_id=$(gh api --header "Accept: application/vnd.github+json" --header 'X-GitHub-Api-Version:2022-11-28' --method GET /repos/ACCESS-NRI/ESMValTool-workflow/issues?state=open | jq '.[] | select(.title == "Recipe: {{ recipe }} failing") | .number')
+          if [ -z "$github_id" ]
+          then
+            gh api --header "Accept: application/vnd.github+json" --header 'X-GitHub-Api-Version:2022-11-28' --method POST /repos/ACCESS-NRI/ESMValTool-workflow/issues -f title="Recipe: {{ recipe }} failing" -f body="Please check log in action workflow"
+          else
+            # gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/ACCESS-NRI/ESMValTool-workflow/issues/$github_id/comments -f body="Still failing"
+          fi
+          
