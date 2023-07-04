@@ -155,7 +155,7 @@ def generate_submit():
             file.write('#!/bin/bash -l \n')
             file.write('#PBS -S /bin/bash\n')
             file.write(f'#PBS -P {account}\n')
-            file.write('#PBS -l storage=gdata/kj13+gdata/fs38+gdata/oi10+gdata/rr3+gdata/xp65+gdata/al33\n')
+            file.write('#PBS -l storage=gdata/kj13+gdata/fs38+gdata/oi10+gdata/rr3+gdata/xp65+gdata/al33+gdata/rt52+gdata/zz93\n')
             file.write(f'#PBS -N {recipe.stem}\n')
             file.write('#PBS -W block=true\n')
             file.write('#PBS -W umask=037\n')
