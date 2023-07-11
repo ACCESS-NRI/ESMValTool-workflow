@@ -65,6 +65,7 @@ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 | recipe_flato13ipcc_figures_92_95 | ![recipe_flato13ipcc_figures_92_95](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_flato13ipcc_figures_92_95.yml/badge.svg) |  
 | recipe_flato13ipcc_figures_938_941_cmip3 | ![recipe_flato13ipcc_figures_938_941_cmip3](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_flato13ipcc_figures_938_941_cmip3.yml/badge.svg) |  
 | recipe_flato13ipcc_figures_938_941_cmip6 | ![recipe_flato13ipcc_figures_938_941_cmip6](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_flato13ipcc_figures_938_941_cmip6.yml/badge.svg) |  
+| recipe_galytska23jgr | ![recipe_galytska23jgr](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_galytska23jgr.yml/badge.svg) |  
 | recipe_gier2020bg | ![recipe_gier2020bg](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_gier2020bg.yml/badge.svg) |  
 | recipe_globwat | ![recipe_globwat](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_globwat.yml/badge.svg) |  
 | recipe_heatwaves_coldwaves | ![recipe_heatwaves_coldwaves](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_heatwaves_coldwaves.yml/badge.svg) |  
@@ -126,6 +127,7 @@ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 | recipe_psyplot | ![recipe_psyplot](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_psyplot.yml/badge.svg) |  
 | recipe_pv_capacity_factor | ![recipe_pv_capacity_factor](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_pv_capacity_factor.yml/badge.svg) |  
 | recipe_python | ![recipe_python](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_python.yml/badge.svg) |  
+| recipe_python_for_CI | ![recipe_python_for_CI](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_python_for_CI.yml/badge.svg) |  
 | recipe_quantilebias | ![recipe_quantilebias](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_quantilebias.yml/badge.svg) |  
 | recipe_r | ![recipe_r](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_r.yml/badge.svg) |  
 | recipe_radiation_budget | ![recipe_radiation_budget](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_radiation_budget.yml/badge.svg) |  
@@ -134,6 +136,7 @@ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 | recipe_russell18jgr | ![recipe_russell18jgr](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_russell18jgr.yml/badge.svg) |  
 | recipe_schlund20esd | ![recipe_schlund20esd](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_schlund20esd.yml/badge.svg) |  
 | recipe_sea_surface_salinity | ![recipe_sea_surface_salinity](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_sea_surface_salinity.yml/badge.svg) |  
+| recipe_seaborn | ![recipe_seaborn](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_seaborn.yml/badge.svg) |  
 | recipe_seaice | ![recipe_seaice](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_seaice.yml/badge.svg) |  
 | recipe_seaice_drift | ![recipe_seaice_drift](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_seaice_drift.yml/badge.svg) |  
 | recipe_seaice_feedback | ![recipe_seaice_feedback](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/recipe_seaice_feedback.yml/badge.svg) |  

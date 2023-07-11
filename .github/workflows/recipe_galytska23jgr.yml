@@ -1,0 +1,69 @@
+
+
+name: Run recipe_galytska23jgr 
+ 
+on:
+  workflow_run:
+    workflows: [ "Run all recipes", "Run all failed" ]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  run_recipe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get latest workflow run status
+        uses: actions/github-script@v6
+        id: latest-workflow-status
+        with:
+          script: |
+            const runs = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'recipe_galytska23jgr.yml',
+              per_page: 2
+            })
+            return runs.data.workflow_runs[1].conclusion
+          result-encoding: string
+      - name: Run recipe_galytska23jgr
+        if: ${{ github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          key: ${{secrets.DEPLOY_KEY}}
+          command_timeout: 2400m
+          script: |
+            cd ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/jobs
+            qsub launch_recipe_galytska23jgr.pbs
+      - name: Get output log
+        if: ${{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
+        uses: nicklasfrahm/scp-action@main
+        with:
+          direction: download
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          insecure_ignore_fingerprint: true
+          key: ${{secrets.DEPLOY_KEY}}
+          source: ${{secrets.GADI_SCRIPTS_DIR}}/../ESMValTool/logs/recipe_galytska23jgr.out
+          target: log.txt
+      - name: Upload log as artifact
+        if: ${{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: output_log
+          path: log.txt
+      - name: Create Issue if fails
+        if: ${{ failure() }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          github_id=$(gh api --header "Accept: application/vnd.github+json" --header 'X-GitHub-Api-Version:2022-11-28' --method GET /repos/ACCESS-NRI/ESMValTool-workflow/issues?state=open | jq '.[] | select(.title == "Recipe: recipe_galytska23jgr failing") | .number')
+          if [ -z "$github_id" ]
+          then
+            gh api --header "Accept: application/vnd.github+json" --header 'X-GitHub-Api-Version:2022-11-28' --method POST /repos/ACCESS-NRI/ESMValTool-workflow/issues -f title="Recipe: recipe_galytska23jgr failing" -f body="Please check log in action workflow"
+          #else
+          #  gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/ACCESS-NRI/ESMValTool-workflow/issues/$github_id/comments -f body="Still failing"
+          fi
+          
