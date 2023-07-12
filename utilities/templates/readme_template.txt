@@ -9,4 +9,4 @@ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 
 | Name     |      status   |
 |----------|:-------------|{% for recipe in recipes %} 
-| {{ recipe }} | ![{{ recipe }}](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/{{ recipe }}.yml/badge.svg) | {% endfor %}
+| [{{ recipe }}](http://130.56.247.78/esmvaltool/{{ recipe }}/index.html) | [![{{ recipe }}](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/{{ recipe }}.yml/badge.svg)](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/{{ recipe }}.yml) | {% endfor %}
