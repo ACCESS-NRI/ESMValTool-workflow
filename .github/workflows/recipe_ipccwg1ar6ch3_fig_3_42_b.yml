@@ -66,4 +66,12 @@ jobs:
           #else
           #  gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/ACCESS-NRI/ESMValTool-workflow/issues/$github_id/comments -f body="Still failing"
           fi
-          
+      - name: Close Issue if success
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          github_id=$(gh api --header "Accept: application/vnd.github+json" --header 'X-GitHub-Api-Version:2022-11-28' --method GET /repos/ACCESS-NRI/ESMValTool-workflow/issues?state=open | jq '.[] | select(.title == "Recipe: recipe_ipccwg1ar6ch3_fig_3_42_b failing") | .number')
+          if [ ! -z "$github_id" ]
+          then
+            gh issue close $github_id
+          fi          
