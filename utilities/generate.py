@@ -56,6 +56,9 @@ SPECIAL_RECIPES = {
     'recipe_extreme_index': {
         'nci_queue': '#PBS -q normal\n',
     },
+    'recipe_extreme_events': {
+        'walltime': '#PBS -q walltime=10:00:00\n',
+    },
     'recipe_eyring13jgr_12': {
         'nci_queue': '#PBS -q normal\n',
     },
