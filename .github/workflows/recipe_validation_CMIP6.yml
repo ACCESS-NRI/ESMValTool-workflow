@@ -73,5 +73,5 @@ jobs:
           github_id=$(gh api --header "Accept: application/vnd.github+json" --header 'X-GitHub-Api-Version:2022-11-28' --method GET /repos/ACCESS-NRI/ESMValTool-workflow/issues?state=open | jq '.[] | select(.title == "Recipe: recipe_validation_CMIP6 failing") | .number')
           if [ ! -z "$github_id" ]
           then
-            gh issue close $github_id
+            gh issue close --repo ACCESS-NRI/ESMValTool-workflow $github_id
           fi          
