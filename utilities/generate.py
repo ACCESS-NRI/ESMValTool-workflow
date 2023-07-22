@@ -9,7 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 dir_recipes = Path('./ESMValTool/esmvaltool/recipes')
 
 # Name of the conda enviro-l walltime={walltime}\nnment in which esmvaltool is installed
-env = 'conda/access-med-0.1'
+env = 'conda/access-med'
 # Mail notifications when a submitted job fails or finishes
 mail = False
 submit = False
