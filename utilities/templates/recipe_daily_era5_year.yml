@@ -1,3 +1,4 @@
+{# templates/recipe_daily_era5_year.pbs #}
 # ESMValTool
 # recipe_daily_era5.yml
 ---
@@ -55,108 +56,150 @@ diagnostics:
       rename:
         script: cmorizers/era5.py
     variables:
-            #clt:
-            #  mip: E1hr
-            #  era5_name: total_cloud_cover
-            #  era5_freq: hourly
-            #  preprocessor: daily_mean
-            #evspsbl:
-            #  mip: E1hr
-            #  era5_name: evaporation
-            #  era5_freq: hourly
-            #  preprocessor: daily_mean
-            #evspsblpot:
-            #  mip: E1hr
-            #  era5_name: potential_evaporation
-            #  era5_freq: hourly
-            #  preprocessor: daily_mean
-            #mrro:
-            #  mip: E1hr
-            #  era5_name: runoff
-            #  era5_freq: hourly
-            #  preprocessor: daily_mean
+      {% if variable is 'clt' %}      
+      clt:
+        mip: E1hr
+        era5_name: total_cloud_cover
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'evspsbl' %}      
+      evspsbl:
+        mip: E1hr
+        era5_name: evaporation
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'evspsblpot' %}      
+      evspsblpot:
+        mip: E1hr
+        era5_name: potential_evaporation
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'mrro' %}      
+      mrro:
+        mip: E1hr
+        era5_name: runoff
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'pr' %}      
       pr:
         mip: E1hr
         era5_name: total_precipitation
         era5_freq: hourly
         preprocessor: daily_mean
-        #prsn:
-        #  mip: E1hr
-        #  era5_name: snowfall
-        #  era5_freq: hourly
-        #  preprocessor: daily_mean
-        #ps:
-        #  mip: E1hr
-        #  era5_name: surface_pressure
-        #  era5_freq: hourly
-        #  preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'prsn' %}      
+      prsn:
+        mip: E1hr
+        era5_name: snowfall
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'ps' %}      
+      ps:
+        mip: E1hr
+        era5_name: surface_pressure
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'psl' %}      
       psl:
         mip: E1hr
         era5_name: mean_sea_level_pressure
         era5_freq: hourly
         preprocessor: daily_mean
-        #rlds:
-        #  mip: E1hr
-        #  era5_name: surface_thermal_radiation_downwards
-        #  era5_freq: hourly
-        #  preprocessor: daily_mean
-        #rls:
-        #  mip: E1hr
-        #  era5_name: mean_surface_net_long_wave_radiation_flux
-        #  era5_freq: hourly
-        #  preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'rlds' %}      
+      rlds:
+        mip: E1hr
+        era5_name: surface_thermal_radiation_downwards
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'rls' %}      
+      rls:
+        mip: E1hr
+        era5_name: mean_surface_net_long_wave_radiation_flux
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'rsds' %}      
       rsds:
         mip: E1hr
         era5_name: surface_solar_radiation_downwards
         era5_freq: hourly
         preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'rsdt' %}      
       rsdt:
         mip: E1hr
         era5_name: toa_incident_solar_radiation
         era5_freq: hourly
         preprocessor: daily_mean
-        #rss:
-        #  mip: E1hr
-        #  era5_name: surface_net_solar_radiation
-        #  era5_freq: hourly
-        #  preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'rss' %}      
+      rss:
+        mip: E1hr
+        era5_name: surface_net_solar_radiation
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'tas' %}      
       tas:
         mip: E1hr
         era5_name: 2m_temperature
         era5_freq: hourly
         preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'tasmax' %}      
       tasmax:
         mip: E1hr
         era5_name: maximum_2m_temperature_since_previous_post_processing
         era5_freq: hourly
         preprocessor: daily_max
+      {% endif %}
+      {% if variable is 'tasmin' %}      
       tasmin:
         mip: E1hr
         era5_name: minimum_2m_temperature_since_previous_post_processing
         era5_freq: hourly
         preprocessor: daily_min
+      {% endif %}
+      {% if variable is 'tdps' %}      
       tdps:
         mip: E1hr
         era5_name: 2m_dewpoint_temperature
         era5_freq: hourly
         preprocessor: daily_mean
-        #ts:
-        #  mip: E1hr
-        #  era5_name: skin_temperature
-        #  era5_freq: hourly
-        #  preprocessor: daily_mean
-        #tsn:
-        #  mip: E1hr
-        #  era5_name: temperature_of_snow_layer
-        #  era5_freq: hourly
-        #  preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'ts' %}      
+      ts:
+        mip: E1hr
+        era5_name: skin_temperature
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'tsn' %}      
+      tsn:
+        mip: E1hr
+        era5_name: temperature_of_snow_layer
+        era5_freq: hourly
+        preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'uas' %}      
       uas:
         mip: E1hr
         era5_name: 10m_u_component_of_wind
         era5_freq: hourly
         preprocessor: daily_mean
+      {% endif %}
+      {% if variable is 'vas' %}      
       vas:
         mip: E1hr
         era5_name: 10m_v_component_of_wind
         era5_freq: hourly
         preprocessor: daily_mean
+      {% endif %}
