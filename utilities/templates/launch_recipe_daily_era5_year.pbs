@@ -7,14 +7,15 @@
 #PBS -W block=false
 #PBS -W umask=037
 #PBS -l wd
-#PBS -o recipe_daily_era5_{{ year }}.out
-#PBS -e recipe_daily_era5_{{ year }}.err
+#PBS -o recipe_daily_era5_{{ variable }}_{{ year }}.out
+#PBS -e recipe_daily_era5_{{ variable }}_{{ year }}.err
 #PBS -q normal
 #PBS -l walltime=1:00:00
-#PBS -l mem=64GB
+#PBS -l mem=128GB
 #PBS -l ncpus=10
+#PBS -l jobfs=1GB
 
 module use /g/data/xp65/public/modules
 module load conda/access-med
 
-esmvaltool run --config_file /g/data/kj13/admin/ESMValTool/.esmvaltool/config-user.yml --search_esgf never --max_parallel_tasks 10 --output_dir ./ERA5 recipe_daily_era5_{{ year }}.yml
+esmvaltool run --config_file /g/data/kj13/admin/ESMValTool/.esmvaltool/config-user.yml --search_esgf never --max_parallel_tasks 10 --remove_preproc_dir False --output_dir ./ERA5 recipe_daily_era5_{{ variable }}_{{ year }}.yml
