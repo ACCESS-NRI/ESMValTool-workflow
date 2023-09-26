@@ -232,20 +232,39 @@ def generate_actions():
             file.write(content)
 
 
+def check_string_in_file(string, file):
+    with open(file) as f:
+        if string in f.read():
+            return True
+        else:
+            return False
+
+
 def generate_readme():
     """Generate Readme for GitHub."""
     environment = Environment(loader=FileSystemLoader("templates/"))
     template = environment.get_template("readme_template.txt")
 
-    recipes = []
+    tier1 = []
+    tier2 = []
+    tier3 = []
+    no_obs = []
     for recipe in Path(dir_recipes).rglob('*.yml'):
         if recipe.stem in exclude:
             continue
-        recipes.append(recipe.stem)
-        
-    recipes.sort()    
+        if check_string_in_file("tier: 3", recipe):
+            tier3.append(recipe.stem)
+            continue
+        if check_string_in_file("tier: 2", recipe):
+            tier2.append(recipe.stem)
+            continue
+        if check_string_in_file("tier: 1", recipe):
+            tier1.append(recipe.stem)
+            continue
+        no_obs.append(recipe.stem)
+
     content = template.render(
-            recipes=recipes,
+            no_obs=no_obs, tier1=tier1, tier2=tier2, tier3=tier3
     )
     with open('../Readme.md', 'w', encoding='utf-8') as file:
         file.write(content)
