@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  latest:
     runs-on: ubuntu-latest
     steps:
       - name: Run rsync job
@@ -18,5 +18,29 @@ jobs:
           script: |
             cd ${{secrets.GADI_SINGULARITY_DIR}}
             qsub latest.pbs
-            qsub experimental.pbs
+  development:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run rsync job
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          key: ${{secrets.DEPLOY_KEY}}
+          command_timeout: 600m
+          script: |
+            cd ${{secrets.GADI_SINGULARITY_DIR}}
             qsub development.pbs
+  experimental:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run rsync job
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          key: ${{secrets.DEPLOY_KEY}}
+          command_timeout: 600m
+          script: |
+            cd ${{secrets.GADI_SINGULARITY_DIR}}
+            qsub experimental.pbs
