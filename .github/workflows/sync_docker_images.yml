@@ -1,0 +1,22 @@
+name: Update Singularity images
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run rsync job
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          key: ${{secrets.DEPLOY_KEY}}
+          command_timeout: 600m
+          script: |
+            cd ${{secrets.GADI_SINGULARITY_DIR}}
+            qsub latest.pbs
+            qsub experimental.pbs
+            qsub development.pbs
