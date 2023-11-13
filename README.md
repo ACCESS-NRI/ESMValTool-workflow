@@ -2,10 +2,21 @@
 
 # ACCESS-NRI MED ESMValTool Workflow
 
-ACCESS-NRI maintenance of ESMValTool for the Australian Community.
+ ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 
+*ESMValTool is a community-developed climate model diagnostics and evaluation software package, driven both by computational performance and scientific accuracy and reproducibility. ESMValTool is open to both users and developers, encouraging open exchange of diagnostic source code and evaluation results from the Coupled Model Intercomparison Project CMIP ensemble. For a comprehensive introduction to ESMValTool please visit the [ESMValTool documentation page](https://docs.esmvaltool.org/en/latest).*
+
+## What is this repository about?
+
+This repository provides:
+- Developer tools for the maintainance of ESMValTool on Gadi.
+- Recipe running status on NCI Gadi.
+- The Github issue tracker is used to support usage of ESMValTool on Gadi.
+
+<!--->
 ![example workflow](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/sync_jasmin.yml/badge.svg)
 ![example workflow](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/sync_auxdata.yml/badge.svg)
+-->
 
 ## Recipe without observation datasets
 
