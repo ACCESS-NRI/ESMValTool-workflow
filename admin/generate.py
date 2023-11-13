@@ -9,7 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 dir_recipes = Path('./ESMValTool/esmvaltool/recipes')
 
 # Name of the conda enviro-l walltime={walltime}\nnment in which esmvaltool is installed
-env = 'conda/access-med'
+env = 'esmvaltool'
 # Mail notifications when a submitted job fails or finishes
 mail = False
 submit = False
@@ -207,8 +207,7 @@ def generate_submit():
             if not config_file:
                 file.write(f'esmvaltool run ../{str(recipe)}')
             else:
-                file.write(f'esmvaltool run --config_file '
-                           f'{str(config_file)} ../{str(recipe)}')
+                file.write(f'esmvaltool run ../{str(recipe)}')
             if recipe.stem in ONE_TASK_RECIPES:
                 file.write(' --max_parallel_tasks=1')
 
