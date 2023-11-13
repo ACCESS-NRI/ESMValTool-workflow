@@ -1,0 +1,58 @@
+# ESMValTool
+# recipe_australia.yml
+---
+documentation:
+  description: Australia map temperature anomalies
+  title: Australia temperature anomalies
+  authors:
+    - beucher_romain
+  maintainer:
+    - beucher_romain
+  project:
+    - access_nri
+
+datasets:
+  - {dataset: ACCESS-ESM1-5, project: CMIP6, mip: Amon, exp: historical,
+     ensemble: r1i1p1f1, grid: gn, start_year: 1971, end_year: 2013}
+  - {dataset: ACCESS-ESM1-5, project: CMIP6, mip: Amon, exp: historical,
+     ensemble: r23i1p1f1, grid: gn, start_year: 1971, end_year: 2013}
+
+preprocessors:
+  
+  extract_data:
+    anomalies:
+      period: monthly
+      reference:
+        start_year: 1971
+        start_month: 1
+        start_day: 1
+        end_year: 2000
+        end_month: 12
+        end_day: 31
+      standardize: false
+    
+    extract_time:
+      start_year: 2013
+      start_month: 1
+      start_day: 1
+      end_year: 2013
+      end_month: 12
+      end_day: 31
+
+    custom_order: true
+
+diagnostics:
+
+  australia_monthly_temperature:
+    description: visualise monthly temperature for Australia
+    variables:
+      surface_temperature:
+        short_name: tas
+        preprocessor: extract_data
+      precipitation:
+        short_name: pr
+        preprocessor: extract_data
+    scripts:
+      australia_map:
+        script: /scratch/tm70/rb5533/ESMValTool/Tutorial/australia.py
+        colormap: "coolwarm"
