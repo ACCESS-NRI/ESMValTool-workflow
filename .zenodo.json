@@ -1,0 +1,36 @@
+{
+    "creators": [
+        {
+            "orcid": "",
+            "affiliation": "ACCESS-NRI",
+            "name": "Beucher, Romain"
+        },
+        {
+            "orcid": "",
+            "affiliation": "ACCESS-NRI",
+            "name": "Tetley, Michael"
+        },
+        {
+            "orcid": "",
+            "affiliation": "ACCESS-NRI",
+            "name": "Zeng, Rhaegar"
+        },
+        {
+            "orcid": "",
+            "affiliation": "ACCESS-NRI",
+            "name": "Chun, Felicity"           
+        }
+    ],
+
+    "license": "Apache-2.0",
+
+    "title": "ACCESS-NRI ESMValTool Workflow support at NCI",
+
+    "keywords": ["Climate", "Science", "Model Evaluation", "ESMValTool", "ACCESS-NRI", "NCI"],
+
+    "communities": [
+        {"identifier": "access-nri"}
+    ],
+
+    "grants": [{"id":""}]
+}
