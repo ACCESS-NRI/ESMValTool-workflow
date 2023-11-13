@@ -13,7 +13,7 @@ This repository provides:
 - Recipe running status on NCI Gadi.
 - The Github issue tracker is used to support usage of ESMValTool on Gadi.
 
-<!--->
+<!--
 ![example workflow](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/sync_jasmin.yml/badge.svg)
 ![example workflow](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/sync_auxdata.yml/badge.svg)
 -->
