@@ -13,6 +13,18 @@ This only checks that the recipe runs to completion and succeeds.
 - **Tier 1** and **Tier 2** observation datasets available via the ACCESS-NRI replicas NCI collection
 for model evaluation (ct11).
 
+NCI Data Collections:
+
+| Data     | supported collection |
+| -------- | ---------------------|
+| CMIP6    | fs38, oi10           |
+| CMIP5    | al33, rr3            |
+| OBS      | ct11                 |
+| obs4MIPS | ct11, qv56           |
+| ana4mips | ct11, qv56           |
+| ERA5     | rt52                 |
+
+
 ### Not Included
 
 - **Tier 3** observation datasets.
