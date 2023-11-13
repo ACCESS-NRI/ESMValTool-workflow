@@ -266,7 +266,7 @@ def generate_readme():
     content = template.render(
             no_obs=no_obs, tier1=tier1, tier2=tier2, tier3=tier3
     )
-    with open('../Readme.md', 'w', encoding='utf-8') as file:
+    with open('../README.md', 'w', encoding='utf-8') as file:
         file.write(content)
 
 
