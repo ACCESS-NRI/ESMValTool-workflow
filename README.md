@@ -1,6 +1,6 @@
 
 
-# ACCESS-NRI ESMValTool-Workflow
+# ACCESS-NRI ESMValTool-workflow
 
  ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 
