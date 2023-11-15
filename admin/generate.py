@@ -26,7 +26,7 @@ memory = '64GB'
 walltime = '04:00:00'
 # Full path to config_file
 # If none, ~/.esmvaltool/config-user.yml is used
-config_file = '/g/data/kj13/admin/ESMValTool/.esmvaltool/config-user.yml'
+config_file = None
 
 # List of recipes that require non-default SLURM options set above
 SPECIAL_RECIPES = {
@@ -200,10 +200,7 @@ def generate_submit():
             file.write('module use /g/data/xp65/public/modules\n')
             file.write(f'module load {env}\n')
             file.write('\n')
-            if not config_file:
-                file.write(f'esmvaltool run ../{str(recipe)}')
-            else:
-                file.write(f'esmvaltool run ../{str(recipe)}')
+            file.write(f'esmvaltool run {recipe.stem}')
             if recipe.stem in ONE_TASK_RECIPES:
                 file.write(' --max_parallel_tasks=1')
 
