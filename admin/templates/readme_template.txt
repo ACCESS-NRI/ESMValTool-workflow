@@ -20,6 +20,60 @@ ESMValTool-workflow is the ACCESS-NRI software and data infrastructure that enab
 ![example workflow](https://github.com/ACCESS-NRI/ESMValTool-workflow/actions/workflows/sync_auxdata.yml/badge.svg)
 -->
 
+## Using ESMValTool on Gadi
+
+<i>ESMValTool</i> is provided through the `xp65` project on Gadi.
+
+### Pre-requisites
+
+To enable the  <i>ESMValTool-workflow</i>, you need to be a member of the `xp65` NCI projects:
+
+Depending on your needs, you may want to also joined the following supported data collections:
+
+- CMIP6: `fs38`, `oi10`
+- CMIP5: `rr3`, `al33`
+- ERA5 and ERA5-Land: `rt52`, `zz93`
+- obs4MIPs: `qv56`
+
+### Loading the ESMValTool-workflow modules
+ <!-- #### Load the `access-med` conda environment -->
+
+To load the the `esmvaltool` module, execute the following commands:
+```
+    module use /g/data/xp65/public/modules
+    module load esmvaltool
+```
+
+ESMValTool is pre-configured to access CMIP and observation datasets available on Gadi.
+By default, ESMValTool looks for the `config_user.yml` file in the home directory, inside the `.esmvaltool` folder.
+You can get a copy by running:
+
+```
+esmvaltool config get_config_user --path=dest
+```
+
+To list which <i>ESMValTool</i> recipes are available on <i>Gadi</i>, run:
+```
+esmvaltool recipes list
+```
+
+To find out details of a specific `recipe_name.yml`, execute:
+```
+esmvaltool recipes show recipe_name.yml
+```
+
+To retrieve a recipe (and modify it), execute:
+```
+esmvaltool recipes get recipe_name.yml
+```
+
+To execute `recipe_name.yml` and automatically download the required climate data to the default directory, run:
+
+```
+esmvaltool run examples/recipe_python.yml --search_esgf=when_missing
+```
+The `--search_esgf=when_missing` option tells <i>ESMValTool</i> to search for and download the necessary climate data files from Earth System Grid Federation (ESGF), if they cannot be found locally.
+
 # Recipes current status
 
 ## Recipes without observation datasets
