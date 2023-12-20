@@ -5,19 +5,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  #latest:
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Run rsync job
-  #      uses: appleboy/ssh-action@v0.1.7
-  #      with:
-  #        host: gadi.nci.org.au
-  #        username: ${{secrets.GADI_USER}}
-  #        key: ${{secrets.DEPLOY_KEY}}
-  #        command_timeout: 600m
-  #        script: |
-  #          cd ${{secrets.GADI_SINGULARITY_DIR}}
-  #          qsub latest.pbs
+  latest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run rsync job
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: gadi.nci.org.au
+          username: ${{secrets.GADI_USER}}
+          key: ${{secrets.DEPLOY_KEY}}
+          command_timeout: 600m
+          script: |
+            cd ${{secrets.GADI_SINGULARITY_DIR}}
+            qsub latest.pbs
   development:
     runs-on: ubuntu-latest
     steps:
