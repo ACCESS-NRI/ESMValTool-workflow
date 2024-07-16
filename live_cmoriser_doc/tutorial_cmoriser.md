@@ -4,13 +4,13 @@
 
 Live-cmoriser(also known as on-the-fly-cmoriser) in ESMValTool is a tool to autimatically convert raw output of a model to a format which can be load by ESMValTool.
 
-In this case, our live-cmoriser for ACCESS-ESM can read and convert ACCESS-ESM1_5 raw data which stored in group `p73`, so that NCI users can evaluate ACCESS raw data by ESMValTool without any complicate cmorise as a pre-process.
+In this case, our live-cmoriser for ACCESS-ESM can read and convert ACCESS-ESM1_5 raw data, so that NCI users can evaluate ACCESS raw data by ESMValTool without any complicate cmorise as a pre-process.
 
 ### How to use live-cmoriser on Gadi
 
 #### Pre-requisites
 
-For ACCESS-ESM1_5 raw data, you need to be a member of project `p73`.
+For ACCESS-ESM1_5 raw data, ACCESS users can use data in project `zv30`, or their own output from ACCESS model, just make sure those data been stored in the same directory structure as ACCESS model output.
 
 For ESMValTool, you need to be a member of project `xp65`.
 
@@ -34,9 +34,9 @@ We already have ESMValTool version 2.11 with live-cmoriser for ACCESS-ESM data b
 
 #### Add metadata to `config-user.yml` file
 
-`config-user.yml` usually be in path `~/.esmvaltool`, for people want to use raw data in `p73`, you need to add following path to `config-user.yml` under `rootpath`
+`config-user.yml` usually be in path `~/.esmvaltool`, for people want to use live-cmoriser, the root of ACCESS raw data should be add into `config-user.yml`.
 ```
-    ACCESS: /g/data/p73/archive/non-CMIP/
+    ACCESS: {ACCESS raw data root}
 ```
 
 
@@ -69,14 +69,13 @@ There is an example of a dataset entries in recipe:
 
 `project` and `dataset` are used for ESMValTool to find the cmoriser, so it's mandatory to be `project: ACCESS` and `dataset: ACCESS_ESM1_5`.
 
- `sub_dataset`, `exp`, `modeling_realm` are used to specify the path to ACCESS-ESM raw dataset, for dataset in `p73` it's follow this format：
-```
-/g/data/p73/archive/non-CMIP/ACCESS-ESM1-5/{sub_dataset}/{exp}/{modeling_realm}/netCDF
-```
+`sub_dataset`, `exp`, `modeling_realm` are used to specify the path to ACCESS-ESM raw dataset.
 
- `sub_dataset`, `special_attr` are components in raw dataset file name.
+`sub_dataset`, `special_attr` are components in raw dataset file name.
 
 `project`, `dataset`, `mip`, `exp`, `institute`, `sub_dataset`, `special_attr`, `short_name` are components of output dataset file.
+
+we also prepared an example recipe named `access-live-cmoriser-example.yml`, users can read and run the recipe to easily get start.
 
 #### trigger the live-cmoriser
 
