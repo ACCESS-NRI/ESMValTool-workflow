@@ -2,15 +2,15 @@
 # recipe_access_noncmip.yml
 
 documentation:
-  title: ACCESS-NONCMIP-TEST
+  title: ACCESS-LIVE-CMORISER-EXAMPLE
 
-  description: ACCESS-NONCMIP-TEST 
+  description: ACCESS-LIVE-CMORISER-EXAMPLE 
 
   authors:
-    - unmaintained
+    - rhaegar_zeng
 
   maintainer:
-    - unmaintained
+    - rhaegar_zeng
 
 
 datasets:
