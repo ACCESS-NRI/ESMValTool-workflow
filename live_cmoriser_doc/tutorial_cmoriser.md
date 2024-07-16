@@ -56,7 +56,7 @@ We already have ESMValTool version 2.11 with live-cmoriser for ACCESS-ESM data b
     cmor_default_table_prefix: 'CMIP6_'
 ``` 
 
-This part is telling ESMValTool where to find the raw data and how to name the cmorised dataset file. we will explain those variables in detail in following part.
+This part is telling ESMValTool where to find the raw data and how to name the cmorised dataset file. we will explain those parameters in detail in following part.
 
 #### How to invoke in recipe
 
