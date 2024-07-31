@@ -1,0 +1,175 @@
+# ESMValTool
+# recipe_access_noncmip.yml
+
+documentation:
+  title: ACCESS-LIVE-CMORISER-EXAMPLE
+
+  description: ACCESS-LIVE-CMORISER-EXAMPLE 
+
+  authors:
+    - rhaegar_zeng
+
+  maintainer:
+    - rhaegar_zeng
+
+
+datasets:
+
+  - {project: ACCESS, dataset: ACCESS-ESM1-5, mip: Amon, sub_dataset: HI-CN-05, exp: history, modeling_realm: atm, special_attr: pa, start_year: 1986, end_year: 1986}
+
+
+preprocessors:
+  statistics_test:
+    multi_model_statistics:
+      ignore_scalar_coords: true
+      span: overlap
+      statistics: [mean, gmean, hmean, max, mean, median, min, peak, {operrator: percentile, percent: 50}, rms, std_dev, sum, variance]
+      exclude: [reference_dataset]
+    annual_statistics:
+      operator: mean
+    area_statistics:
+      operator: median
+    axis_statistics:
+      axis: y
+      operator: mean
+      normalize: divide
+    climate_statistics:
+      operator: max
+      seasons: DJF
+    daily_statistics:
+      operator: peak
+    decadal_statistics:
+      operator: min
+    ensemble_statistics:
+      ignore_scalar_coords: true
+      span: overlap
+      statistics: [mean, gmean, hmean, max, mean, median, min, peak, {operrator:percentile, percent:50}, rms, std_dev, sum, variance]
+    hourly_statistics:
+      hours: 12
+    meridional_statistics:
+      operator: rms
+      normalize: subtract
+    monthly_statistics:
+      operator: mean
+    rolling_window_statistics:
+      coordinate: latitude
+      operator: std_dev
+    seasonal_statistics:
+      operator: variance
+      seasons: MAM
+    volume_statistics:
+      operator: sum
+      normalize: divide
+    zonal_statistics:
+      operator: variance
+      normalize: divide
+  
+  other_test:
+    accumulate_coordinate:
+      coordinate: latitude
+    add_supplementary_variables:
+      supplementary_cubes: [tas]
+    amplitude:
+     coords: ['day_of_year', 'year']
+    anomalies:
+      period: mon
+      standardize: true
+      seasons: JJA
+    bias:
+      bias_type: absolute
+    clip:
+      minimum: 0
+    clip_timerange:
+      timerange: 1985-01-16 00:00:00.000/1985-02-16 00:00:00.000
+    concatenate:
+      check_level: strict
+    detrend:
+      dimention: y
+      method: constant
+    distance_metric:
+      metric: rmse
+      coords: [x,y]
+    extract_levels:
+      levels: [0., 10., 100., 1000.]
+      scheme: linear_extrapolate
+    extract_region:
+      start_longitude: -80.
+      end_longitude: 30.
+      start_latitude: -80.
+      end_latitude: 80.
+    regrid:
+      target_grid: 2x2
+      scheme: linear
+    mask_fillvalues:
+      threshold_fraction: 0.95
+
+
+
+diagnostics:
+  access_dataload_test:   
+    variables:
+      tas_test:
+        short_name: tas
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      pr_test:
+        short_name: pr
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      ps_test:
+        short_name: ps
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      
+      clt_test:
+        short_name: clt
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      
+      psl_test:
+        short_name: psl
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      
+      hus_test:
+        short_name: hus
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      
+      zg_test:
+        short_name: zg
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+
+      va_test:
+        short_name: va
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+
+      ua_test:
+        short_name: ua
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      
+      ta_test:
+        short_name: ta
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      
+      rlds_test:
+        short_name: rlds
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+
+      rsus_test:
+        short_name: rsus
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+      
+      rlus_test:
+        short_name: rlus
+        mip: Amon
+        preprocessors: [statistics_test, other_test]
+
+    scripts: null
+
