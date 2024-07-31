@@ -115,50 +115,81 @@ Here is a complete example for the `recipe_quantile_bias.yml`
 
 ```yml
 # ESMValTool
-# recipe_quantilebias.yml
+# recipe_eady_growth_rate.yml
 ---
 documentation:
-  title: Precipitation Quantile Bias
+  title: |
+    Annual and seasonal means of the maximum Eady Growth Rate (EGR).
+
   description: |
-    Tool for calculation of precipitation quantile bias
+    Recipe to compute the annual mean or the seasonal mean of the maximum Eady Growth Rate
+    (EGR, Brian J Hoskins and Paul J Valdes. On the existence of storm-tracks.
+    Journal of the atmospheric sciences, 47(15):1854–1864, 1990.).
+    The output produces netcdf files for each model. In the case of the seasonal means, a plot is
+    produced for each specified level showing the EGR values over the North-Atlantic region.
+
 
   authors:
-    - arnone_enrico
-    - vonhardenberg_jost
+    - sanchez-gomez_emilia
+    - moreno-chamarro_eduardo
 
   maintainer:
-    - vonhardenberg_jost
+    - loosveldt-tomas_saskia
 
   references:
-    - mehran14jgr
+    - morenochamarro2021
 
   projects:
-    - c3s-magic
+    - primavera
 
-datasets:
-  # Load ACCESS-ESM1-5 from p73 using the ACCESS Live CMORiser
-  - {project: ACCESS, dataset: ACCESS-ESM1-5, sub_dataset: HI-CN-05, exp: history, modeling_realm: atm, special_attr: pa, start_year: 1986, end_year: 1986}
-  - {dataset: GPCP-V2.3, project: obs4MIPs, level: L3, tier: 1, start_year: 1986, end_year: 1986}
+datasets:s
+
+  - {project: ACCESS, dataset: ACCESS-ESM1-5, mip: Amon, sub_dataset: HI-CN-05, exp: history, modeling_realm: atm, special_attr: pa, start_year: 2001, end_year: 2002}
 
 preprocessors:
-  mask_regrid_preproc:
-    regrid:
-      target_grid: 2x2
-      scheme: area_weighted
-    mask_landsea:
-      mask_out: sea
+  summer:
+    extract_season:
+      season: 'JJA'
+  winter:
+    extract_season:
+      season: 'DJF'
 
 diagnostics:
-  quantilebias:
-    description: Tool for calculation of precipitation quantile bias
+  annual_egr:
     variables:
-      pr:
-        preprocessor: mask_regrid_preproc
-        reference_dataset: GPCP-V2.3
-        mip: Amon
-
+      ta:
+      zg:
+      ua:
     scripts:
-      main:
-        script: quantilebias/quantilebias.R
-        perc_lev: 75
+      annual_eady_growth_rate:
+        script: primavera/eady_growth_rate/eady_growth_rate.py
+        time_statistic: 'annual_mean'
+
+
+  summer_egr:
+    variables:
+      ta:
+        preprocessor: summer
+      zg:
+        preprocessor: summer
+      ua:
+        preprocessor: summer
+    scripts:
+      summer_eady_growth_rate:
+        script: primavera/eady_growth_rate/eady_growth_rate.py
+        time_statistic: 'seasonal_mean'
+
+  winter_egr:
+    variables:
+      ta:
+        preprocessor: winter
+      zg:
+        preprocessor: winter
+      ua:
+        preprocessor: winter
+    scripts:
+      winter_eady_growth_rate:
+        script: primavera/eady_growth_rate/eady_growth_rate.py
+        time_statistic: 'seasonal_mean'
+        plot_levels: [70000]
 ```
