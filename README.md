@@ -2,6 +2,9 @@
 
 # ACCESS-NRI ESMValTool-workflow
 
+[![DOI](https://zenodo.org/badge/642656227.svg)](https://doi.org/10.5281/zenodo.14183930)
+
+
  ACCESS-NRI maintenance of ESMValTool for the Australian Community.
 
 ## What is ESMValTool? 
