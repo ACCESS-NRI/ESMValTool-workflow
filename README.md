@@ -43,7 +43,7 @@ Depending on your needs, you may want to also joined the following supported dat
 To load the the `esmvaltool` module, execute the following commands:
 ```
     module use /g/data/xp65/public/modules
-    module load esmvaltool
+    module load esmvaltool-workflow
 ```
 
 ESMValTool is pre-configured to access CMIP and observation datasets available on Gadi.
