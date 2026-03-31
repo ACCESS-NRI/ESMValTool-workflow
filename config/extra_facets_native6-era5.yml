@@ -1,0 +1,179 @@
+# Extra facets for native6 ERA5 data in NCI Gadi
+#
+
+# A complete list of supported keys is given in the documentation (see
+# ESMValCore/doc/quickstart/find_data.rst).
+
+# Updated for new configuration v2.12/2.13
+---
+
+projects:
+  native6:
+    extra_facets:
+      ERA5:
+        # Settings for all variables of all MIPs
+        '*':
+          '*':
+            regrid: true
+            type: an
+            version: v1
+
+          # Variable-specific settings
+          pr:
+            era5_shortname: tp
+            level: single-levels
+          prw:
+            era5_shortname: tcwv
+            level: single-levels
+          cli:
+            era5_shortname: ciwc
+            level: pressure-levels
+          clivi:
+            era5_shortname: ciwc
+            level: pressure-levels
+          clt:
+            era5_shortname: tcc
+            level: single-levels
+          clw:
+            era5_shortname: clwc
+            level: pressure-levels
+          clwvi:
+            era5_shortname: clwc
+            level: pressure-levels
+          evspsbl:
+            era5_shortname: e
+            level: single-levels
+          evspsblpot:
+            era5_shortname: pev
+            level: single-levels
+          hur:
+            era5_shortname: r
+            level: pressure-levels
+          hus:
+            era5_shortname: q
+            level: pressure-levels
+          mrro:
+            era5_shortname: ro
+            level: single-levels
+          o3:
+            era5_shortname: o3
+            level: single-levels
+          prsn:
+            era5_shortname: sf
+            level: single-levels
+          prw:
+            era5_shortname: tcwv
+            level: single-levels
+          ps:
+            era5_shortname: sp
+            level: single-levels
+          psl:
+            era5_shortname: msl
+            level: single-levels
+          #ptype:
+          #  era5_shortname: 2t
+          #  level: single-levels
+          rainmxrat27:
+            era5_shortname: crwc
+            level: pressure-levels
+          rlds:
+            era5_shortname: strd
+            level: single-levels
+          rls:
+            era5_shortname: msnlwrf
+            level: single-levels
+          rsds:
+            era5_shortname: ssrd
+            level: single-levels
+          rsdt:
+            era5_shortname: tisr
+            level: single-levels
+          rss:
+            era5_shortname: ssr
+            level: single-levels
+          snowmxrat27:
+            era5_shortname: cswc
+            level: pressure-levels
+          ta:
+            era5_shortname: t
+            level: pressure-levels
+          tas:
+            era5_shortname: 2t
+            level: single-levels
+          tasmax:
+            era5_shortname: mx2t
+            level: single-levels
+          tasmin:
+            era5_shortname: mn2t
+            level: single-levels
+          tdps:
+            era5_shortname: 2d
+            level: single-levels
+          ts:
+            era5_shortname: skt
+            level: single-levels
+          tsn:
+            era5_shortname: tsn
+            level: single-levels
+          ua:
+            era5_shortname: u
+            level: pressure-levels
+          uas:
+            era5_shortname: 10u
+            level: single-levels
+          va:
+            era5_shortname: v
+            level: pressure-levels
+          vas:
+            era5_shortname: 10v
+            level: single-levels
+          wap:
+            era5_shortname: w
+            level: pressure-levels
+          zg:
+            era5_shortname: z
+            level: pressure-levels
+
+        # MIP-specific settings
+        E1hr:
+          '*':
+            nci_type: reanalysis
+        AERhr:
+          '*':
+            nci_type: reanalysis
+        AERmon:
+          '*':
+            nci_type: monthly-averaged
+        AERmonZ:
+          '*':
+            nci_type: monthly-averaged
+        Amon:
+          '*':
+            nci_type: monthly-averaged
+        CFmon:
+          '*':
+            nci_type: monthly-averaged
+        Emon:
+          '*':
+            nci_type: monthly-averaged
+        EmonZ:
+          '*':
+            nci_type: monthly-averaged
+        ImonAnt:
+          '*':
+            nci_type: monthly-averaged
+        ImonGre:
+          '*':
+            nci_type: monthly-averaged
+        LImon:
+          '*':
+            nci_type: monthly-averaged
+        Lmon:
+          '*':
+            nci_type: monthly-averaged
+        Omon:
+          '*':
+            nci_type: monthly-averaged
+        SImon:
+          '*':
+            nci_type: monthly-averaged
