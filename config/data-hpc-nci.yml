@@ -109,6 +109,7 @@ projects:
       type: esmvalcore.cmor.table.CMIP6Info
       paths:
         - /g/data/xp65/public/apps/esmvaltool/utils/extras/cordex-cmip6-cmor-tables
+        - cmip6-custom
       strict: false                                                                                                                             
                                                                                                                             
   BARRA2:
@@ -122,4 +123,5 @@ projects:
       type: esmvalcore.cmor.table.CMIP6Info
       paths:
         - /g/data/xp65/public/apps/esmvaltool/utils/extras/cordex-cmip6-cmor-tables
+        - cmip6-custom
       strict: false
