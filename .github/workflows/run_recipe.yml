@@ -21,7 +21,7 @@ jobs:
     steps:
 
       #- name: Get latest workflow run status
-      #  uses: actions/github-script@v6
+      #  uses: actions/github-script@v9
       #  id: latest-workflow-status
       #  with:
       #    script: |
@@ -61,7 +61,7 @@ jobs:
       
       #- name: Upload log as artifact
       #  if: ${{ failure() || github.event.workflow_run.name == 'Run all recipes' || ( github.event.workflow_run.name == 'Run all failed' && steps.latest-workflow-status.outputs.result != 'success' ) || github.event_name == 'workflow_dispatch' }}
-      #  uses: actions/upload-artifact@v3
+      #  uses: actions/upload-artifact@v7
       #  with:
       #    name: output_log
       #    path: log.txt
